@@ -1,17 +1,13 @@
-import Navbar from 'components/Navbar';
+
+
 import './assets/styles/custom.scss';
 import './App.css';
-
+import Routes from 'Routes';
 
 function App() {
- 
   return (
-    <>
-    <Navbar />
-      <h1>Hello Mundo</h1>;
-    </>
+    <Routes />
   );
-
 }
 
 export default App;
