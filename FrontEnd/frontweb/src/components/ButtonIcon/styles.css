@@ -7,7 +7,7 @@
 }
 .btn h6 {
   color: #fff;
-  font: 10px;
+  font-size: 10px;
   text-transform: uppercase;
 }
 .btn-icon-container {
@@ -18,6 +18,19 @@
   height: 50px;
   border-radius: 0px 10px 10px 0px;
   background-color: #33569b;
+}
+
+@media(min-width: 576px){
+  .btn-icon-container{
+    width: 70px;
+    height: 70px;
+  }
+
+  .btn h6 {
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
 }
 
 
