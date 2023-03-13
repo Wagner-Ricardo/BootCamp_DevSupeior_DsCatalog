@@ -1,4 +1,4 @@
-import { type } from 'os';
+
 import './styles.css';
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 
