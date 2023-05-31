@@ -1,11 +1,18 @@
+import './styles.css';
+
 import { ReactComponent as AuthImage } from 'assets/images/auth-img.svg';
 import {Switch, Route } from 'react-router-dom';
+
+
+
 const Auth = () => {
   return (
     <div className="auth-container">
       <div className="auth-banner-container">
         <h1>Divulgue seus produtos</h1>
-        <p>Faça parte do nosso catalogo de divulgação</p>
+        <p>Faça parte do nosso catalogo de divulgação e aumente a venda de 
+            seus produtos.
+        </p>
         <AuthImage />
       </div>
 
