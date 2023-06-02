@@ -4,24 +4,25 @@ import { Link } from 'react-router-dom';
 import Pagination from 'components/Pagination';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'assets/types/vendor/spring';
-import axios from 'axios';
-import { AxiosParams } from 'assets/types/vendor/axios';
-import { BASE_URL } from 'util/requests';
+import axios, { AxiosRequestConfig } from 'axios';
 
-import './styles.css';
+import { BASE_URL } from 'util/requests';
 import CardLoader from './CardLoader';
+import './styles.css';
+
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const params: AxiosParams = {
+    const params: AxiosRequestConfig = {
       method: 'GET',
-      url: `${BASE_URL}/products`,
+      url: "/products",
+      baseURL:BASE_URL,
       params: {
         page: 0,
         size: 12,
-      },
+      }
     };
     setIsLoading(true);
     axios(params)
