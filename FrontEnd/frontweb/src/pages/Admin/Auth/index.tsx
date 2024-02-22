@@ -20,7 +20,7 @@ const Auth = () => {
       <div className="auth-form-container">
         <Switch>
           <Route path="/admin/auth/login">
-          <Login/>
+          <Login />
           </Route>
 
           <Route path="/admin/auth/sigup">
