@@ -1,6 +1,7 @@
 
 import axios, { AxiosRequestConfig } from "axios";
 import qs from 'qs';
+import history from "./history";
 
 
 type LoginResponse = {
@@ -56,3 +57,38 @@ export const getAuthData = () => {
     return JSON.parse(str) as LoginResponse;
      
 }
+
+//adicionando uma requisição via interceptor
+axios.interceptors.request.use(function (config){
+
+    console.log('interceptor antes da requisição');
+    return config;
+
+}, function error(){
+    console.log('INTERCEPTOR ERRO NA REQUISÇÃO');
+    return Promise.reject(error);
+});
+
+
+//fazendo redidiricionando fora dos componentes react e necessário criar um componente externo
+
+// adicionando a resposta do interceptador
+axios.interceptors.response.use(function (response){
+    // Inserimos aqui a logica em caso de sucesso  na faixa dos 200 e nesse caso será direcionado para
+    // usar esta resposta
+
+    console.log('INTERCEPTOR RESPOSTA COM SUCESSO!!');
+
+    return response;
+}, function (error){
+
+    // estamos nesse momento verificando se os usuarios estão autenticados  caso não estejam autorizados os mesmos
+    //serão redicionando para a pagina de login. Para isso utilizarewsmos um arquivo history.ts para auxiliar. Ima vez
+    // que este arquivo ** request.ts** não é um componente react
+    if( error.response.status === 401 || error.response.status === 403){
+        history.push('/admin/auth')
+    }
+    console.log('INTERCEPTOR RESPOSTA COM ERRO');
+
+    return Promise.reject(error);
+});
