@@ -2,7 +2,17 @@
 import axios, { AxiosRequestConfig } from "axios";
 import qs from 'qs';
 import history from "./history";
+import jwtDecode from "jwt-decode";
 
+// verificando a validade do token ..podemos verificar as informações do token a partir
+// do site jwt.io
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
+
+type TokenData = {
+    exp: number;
+    user_name : string;
+    authorities : Role[]
+}
 
 type LoginResponse = {
     access_token: string;
@@ -92,3 +102,24 @@ axios.interceptors.response.use(function (response){
 
     return Promise.reject(error);
 });
+
+export const getTokenData = (): TokenData | undefined => {
+
+    //O token e caputurado do localstorege da maquina.. sempre
+
+
+    const LoginResponse = getAuthData();
+
+    try{
+        return jwtDecode(LoginResponse.access_token) as TokenData;
+    }
+    catch(error){
+        return undefined;
+    }
+   
+}
+
+export const isAuthenticated = () : boolean => {
+    const tokenData = getTokenData();
+    return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
+}
