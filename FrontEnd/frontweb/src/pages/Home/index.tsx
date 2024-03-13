@@ -2,7 +2,7 @@ import { ReactComponent as MainImage } from 'assets/images/Desenho.svg';
 import ButtonIcon from 'components/ButtonIcon';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { getTokenData, isAuthenticated } from 'util/requests';
+import { isAuthenticated } from 'util/requests';
 const Home = () => {
   return (
     <div className="home-container">
