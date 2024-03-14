@@ -11,7 +11,7 @@ import {
   removeAuthData,
 } from 'util/requests';
 
-export type AuthData = {
+ type AuthData = {
   authenticated: boolean;
   tokenData?: TokenData; // usa-se o ? para indicar a não obrigatoridade de ter o token
 };
@@ -79,10 +79,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="nav-login-logout">
           {authData.authenticated ? (
             <>
-              <span>{authData.tokenData?.user_name}</span>
+              <span className="nav-username">{authData.tokenData?.user_name}</span>
               <a href="#lougout" onClick={handleLogoutClic}>
                 LOGOUT
               </a>
