@@ -1,21 +1,17 @@
 import { AuthContext } from 'AuthContext';
-import './styles.css';
+
 import 'bootstrap/js/src/collapse.js';
 
 import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import history from 'util/history';
-import {
+import { getTokenData, isAuthenticated } from 'util/auth';
+import { removeAuthData } from 'util/storge';
 
-  isAuthenticated,
-  getTokenData,
-  removeAuthData,
-} from 'util/requests';
-
+import './styles.css';
 
 const Navbar = () => {
-
-  const {authContextData, setAuthContextData } = useContext(AuthContext);
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   useEffect(() => {
     if (isAuthenticated()) {
@@ -81,7 +77,9 @@ const Navbar = () => {
         <div className="nav-login-logout">
           {authContextData.authenticated ? (
             <>
-              <span className="nav-username">{authContextData.tokenData?.user_name}</span>
+              <span className="nav-username">
+                {authContextData.tokenData?.user_name}
+              </span>
               <a href="#lougout" onClick={handleLogoutClic}>
                 LOGOUT
               </a>
